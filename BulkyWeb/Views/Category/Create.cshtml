@@ -1,0 +1,35 @@
+@model Category
+
+<div class="container">
+    <div class="row pt-4 pb-3">
+        <div class="col-6">
+            <h2 class="text-primary">Create New Category</h2>
+        </div>
+        <div class="col-6 text-end">
+            <a asp-controller="Category" asp-action="Index" class="btn btn-secondary">
+                <i class="bi bi-arrow-left"></i> Back to List
+            </a>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+            <form method="post">
+                <div class="mb-3">
+                    <label class="form-label">Category Name</label>
+                    <input type="text" class="form-control" name="Name" placeholder="Enter category name" required />
+                </div>
+                
+                <div class="mb-3">
+                    <label class="form-label">Display Order</label>
+                    <input type="number" class="form-control" name="DisplayOrder" placeholder="Enter display order" min="1" required />
+                </div>
+                
+                <div class="mb-3">
+                    <button type="submit" class="btn btn-primary">Create Category</button>
+                    <a asp-controller="Category" asp-action="Index" class="btn btn-secondary ms-2">Cancel</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
