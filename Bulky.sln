@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bulky.Web", "Bulky.Web\Bulky.Web.csproj", "{FA157FDD-90E5-4B3E-81D3-6CBAA8E2DCD6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BulkyWeb", "BulkyWeb\BulkyWeb.csproj", "{FA157FDD-90E5-4B3E-81D3-6CBAA8E2DCD6}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bulky.DataAccess", "Bulky.DataAccess\Bulky.DataAccess.csproj", "{903A06A0-F613-4337-9CEA-A51E95954303}"
 EndProject
