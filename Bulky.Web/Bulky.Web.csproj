@@ -16,4 +16,10 @@
       <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="8.0.3" />
     </ItemGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\Bulky.DataAccess\Bulky.DataAccess.csproj" />
+      <ProjectReference Include="..\Bulky.Models\Bulky.Models.csproj" />
+      <ProjectReference Include="..\Bulky.Utility\Bulky.Utility.csproj" />
+    </ItemGroup>
+
 </Project>

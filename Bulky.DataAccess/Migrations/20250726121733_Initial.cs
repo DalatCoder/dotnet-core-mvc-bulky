@@ -2,7 +2,7 @@
 
 #nullable disable
 
-namespace Bulky.Migrations
+namespace Bulky.DataAccess.Migrations
 {
     /// <inheritdoc />
     public partial class Initial : Migration
