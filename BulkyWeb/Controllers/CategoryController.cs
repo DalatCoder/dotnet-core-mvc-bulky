@@ -13,14 +13,12 @@ public class CategoryController : Controller
         _db = db;
     }
     
-    // GET
     public IActionResult Index()
     {
         List<Category> categories = _db.Categories.ToList();
         return View(categories);
     }
     
-    // GET
     public IActionResult Create()
     {
         return View();
@@ -35,6 +33,37 @@ public class CategoryController : Controller
         }
         
         _db.Categories.Add(category);
+        _db.SaveChanges();
+        
+        return RedirectToAction("Index");
+    }
+    
+    public IActionResult Edit(int? id)
+    {
+        if (id == null || id == 0)
+        {
+            return NotFound();
+        }
+        
+        Category? category = _db.Categories.FirstOrDefault(u => u.Id == id);
+
+        if (category == null)
+        {
+            return NotFound();
+        }
+        
+        return View(category);
+    }
+    
+    [HttpPost]
+    public IActionResult Edit(Category category)
+    {
+        if (!ModelState.IsValid)
+        {
+            return View(category);
+        }
+        
+        _db.Categories.Update(category);
         _db.SaveChanges();
         
         return RedirectToAction("Index");
