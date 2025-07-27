@@ -1,0 +1,46 @@
+@model Category
+
+@{
+    ViewBag.Title = "Delete Category";
+    Layout = "_Layout";
+}
+
+<div class="container">
+    <div class="row pt-4 pb-3">
+        <div class="col-6">
+            <h2 class="text-primary">Delete Category</h2>
+        </div>
+        <div class="col-6 text-end">
+            <a asp-controller="Category" asp-action="Index" class="btn btn-secondary">
+                <i class="bi bi-arrow-left"></i> Back to List
+            </a>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+            <form method="post">
+                <input asp-for="Id" hidden="" />
+
+                <div class="mb-3">
+                    <label asp-for="Name" class="form-label">Category Name</label>
+                    <input asp-for="Name" class="form-control" disabled="" name="Name" placeholder="Enter category name" required/>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="DisplayOrder" class="form-label">Display Order</label>
+                    <input asp-for="DisplayOrder" class="form-control" disabled="" name="DisplayOrder" placeholder="Enter display order" min="1" required/>
+                </div>
+
+                <div class="mb-3">
+                    <button type="submit" class="btn btn-primary">Delete Category</button>
+                    <a asp-controller="Category" asp-action="Index" class="btn btn-secondary ms-2">Cancel</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
