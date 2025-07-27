@@ -29,6 +29,11 @@ public class CategoryController : Controller
     [HttpPost]
     public IActionResult Create(Category category)
     {
+        if (!ModelState.IsValid)
+        {
+            return View(category);
+        }
+        
         _db.Categories.Add(category);
         _db.SaveChanges();
         
