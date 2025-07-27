@@ -19,18 +19,20 @@
     <div class="row">
         <div class="col-md-6 offset-md-3">
             <form method="post">
+                <input asp-for="Id" hidden="" />
+
                 <div class="mb-3">
                     <label asp-for="Name" class="form-label">Category Name</label>
-                    <input asp-for="Name" class="form-control" name="Name" placeholder="Enter category name" required />
+                    <input asp-for="Name" class="form-control" name="Name" placeholder="Enter category name" required/>
                     <span asp-validation-for="Name" class="text-danger"></span>
                 </div>
-                
+
                 <div class="mb-3">
                     <label asp-for="DisplayOrder" class="form-label">Display Order</label>
-                    <input asp-for="DisplayOrder" class="form-control" name="DisplayOrder" placeholder="Enter display order" min="1" required />
+                    <input asp-for="DisplayOrder" class="form-control" name="DisplayOrder" placeholder="Enter display order" min="1" required/>
                     <span asp-validation-for="DisplayOrder" class="text-danger"></span>
                 </div>
-                
+
                 <div class="mb-3">
                     <button type="submit" class="btn btn-primary">Update Category</button>
                     <a asp-controller="Category" asp-action="Index" class="btn btn-secondary ms-2">Cancel</a>
