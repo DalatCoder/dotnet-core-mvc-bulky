@@ -4,6 +4,7 @@ using Bulky.Models;
 
 namespace Bulky.Controllers;
 
+[Area("Customer")]
 public class HomeController : Controller
 {
     private readonly ILogger<HomeController> _logger;
