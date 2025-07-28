@@ -1,0 +1,83 @@
+@model Product
+
+@{
+    ViewBag.Title = "Delete Product";
+    Layout = "_Layout";
+}
+
+<div class="container">
+    <div class="row pt-4 pb-3">
+        <div class="col-6">
+            <h2 class="text-primary">Delete Product</h2>
+        </div>
+        <div class="col-6 text-end">
+            <a asp-controller="Product" asp-action="Index" class="btn btn-secondary">
+                <i class="bi bi-arrow-left"></i> Back to List
+            </a>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+            <div class="alert alert-warning" role="alert">
+                <strong>Warning!</strong> You are about to delete this product. This action cannot be undone.
+            </div>
+            
+            <form method="post">
+                <input asp-for="Id" hidden="" />
+
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <label asp-for="Title" class="form-label">Title</label>
+                        <input asp-for="Title" class="form-control" disabled="" placeholder="Enter product title" />
+                    </div>
+                    <div class="col-md-6">
+                        <label asp-for="Author" class="form-label">Author</label>
+                        <input asp-for="Author" class="form-control" disabled="" placeholder="Enter author name" />
+                    </div>
+                </div>
+                
+                <div class="mb-3">
+                    <label asp-for="Description" class="form-label">Description</label>
+                    <textarea asp-for="Description" class="form-control" rows="3" disabled="" placeholder="Enter product description"></textarea>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="ISBN" class="form-label">ISBN</label>
+                    <input asp-for="ISBN" class="form-control" disabled="" placeholder="Enter ISBN" />
+                </div>
+
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <label asp-for="ListPrice" class="form-label">List Price</label>
+                        <input asp-for="ListPrice" class="form-control" type="number" step="0.01" disabled="" placeholder="0.00" />
+                    </div>
+                    <div class="col-md-6">
+                        <label asp-for="Price" class="form-label">Price for 1-50</label>
+                        <input asp-for="Price" class="form-control" type="number" step="0.01" disabled="" placeholder="0.00" />
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <label asp-for="Price50" class="form-label">Price for 50-100</label>
+                        <input asp-for="Price50" class="form-control" type="number" step="0.01" disabled="" placeholder="0.00" />
+                    </div>
+                    <div class="col-md-6">
+                        <label asp-for="Price100" class="form-label">Price for >100</label>
+                        <input asp-for="Price100" class="form-control" type="number" step="0.01" disabled="" placeholder="0.00" />
+                    </div>
+                </div>
+                
+                <div class="mb-3">
+                    <button type="submit" class="btn btn-danger">Delete Product</button>
+                    <a asp-controller="Product" asp-action="Index" class="btn btn-secondary ms-2">Cancel</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

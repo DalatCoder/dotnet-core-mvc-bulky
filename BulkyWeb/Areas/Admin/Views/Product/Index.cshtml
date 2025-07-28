@@ -1,0 +1,57 @@
+@model List<Product>
+
+@{
+    ViewBag.Title = "Product List";
+}
+
+<div class="container">
+    <div class="row pt-4 pb-3">
+        <div class="col-6">
+            <h2 class="text-primary">Product List</h2>
+        </div>
+        <div class="col-6 text-end">
+            <a asp-controller="Product" asp-action="Create" class="btn btn-primary">
+                <i class="bi bi-plus-circle"></i> Create New Product
+            </a>
+        </div>
+    </div>
+
+    <!-- HTML cơ bản cho bảng -->
+    <table class="table table-bordered table-striped">
+        <thead>
+        <tr>
+            <th>Title</th>
+            <th>Author</th>
+            <th>ISBN</th>
+            <th>List Price</th>
+            <th>Price</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var obj in Model.OrderBy(u => u.Title))
+        {
+            <tr>
+                <td>@obj.Title</td>
+                <td>@obj.Author</td>
+                <td>@obj.ISBN</td>
+                <td>$@obj.ListPrice</td>
+                <td>$@obj.Price</td>
+                <td>
+                    <div class="w-75 btn-group" role="group">
+                        <a asp-controller="Product" asp-action="Edit" asp-route-id="@obj.Id"
+                           class="btn btn-primary mx-2">
+                            <i class="bi bi-pencil"></i> Edit
+                        </a>
+
+                        <a asp-controller="Product" asp-action="Delete" asp-route-id="@obj.Id"
+                           class="btn btn-danger mx-2">
+                            <i class="bi bi-trash-fill"></i> Delete
+                        </a>
+                    </div>
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
+</div>
