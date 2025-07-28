@@ -3,7 +3,7 @@
 <div class="container">
     <div class="row pt-4 pb-3">
         <div class="col-6">
-            <h2 class="text-primary">@(Model.Product.Id != 0 ? "Update" : "Create") New Product</h2>
+            @* <h2 class="text-primary">@(Model.Product.Id != 0 ? "Update" : "Create") New Product</h2> *@
         </div>
         <div class="col-6 text-end">
             <a asp-controller="Product" asp-action="Index" class="btn btn-secondary">
@@ -92,7 +92,7 @@
                     {
                         <button type="submit" class="btn btn-primary">Update Product</button>
                     }
-                    @else
+                    else
                     {
                         <button type="submit" class="btn btn-primary">Create Product</button>
                     }

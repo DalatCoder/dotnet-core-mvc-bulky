@@ -29,15 +29,15 @@ public class ProductController : Controller
             Text = c.Name,
             Value = c.Id.ToString()
         });
-        
+
         ProductViewModel productViewModel = new ProductViewModel();
         productViewModel.Product = new Product();
         productViewModel.CategoryList = categoryList;
-        
+
         if (id != null && id > 0)
         {
             productViewModel.Product = _unitOfWork.Product.Get(u => u.Id == id);
-            
+
             if (productViewModel.Product == null)
             {
                 return NotFound();
@@ -57,8 +57,13 @@ public class ProductController : Controller
                 Text = c.Name,
                 Value = c.Id.ToString()
             });
-            
+
             return View(productViewModel);
+        }
+
+        if (productViewModel.Product.ImageUrl == null)
+        {
+            productViewModel.Product.ImageUrl = "";
         }
 
         if (productViewModel.Product.Id == 0)
@@ -69,7 +74,7 @@ public class ProductController : Controller
         {
             _unitOfWork.Product.Update(productViewModel.Product);
         }
-        
+
         _unitOfWork.Save();
         TempData["success"] = "Product created/updated successfully";
 
