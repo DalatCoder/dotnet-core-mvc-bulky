@@ -1,0 +1,31 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Launch BulkyWeb",
+      "type": "coreclr",
+      "request": "launch",
+      "preLaunchTask": "build",
+      "program": "${workspaceFolder}/BulkyWeb/bin/Debug/net8.0/BulkyWeb.dll",
+      "args": [],
+      "cwd": "${workspaceFolder}/BulkyWeb",
+      "console": "internalConsole",
+      "stopAtEntry": false,
+      "serverReadyAction": {
+        "action": "openExternally",
+        "pattern": "\\bNow listening on:\\s+(https?://\\S+)"
+      },
+      "env": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "sourceFileMap": {
+        "/Views": "${workspaceFolder}/BulkyWeb/Views"
+      }
+    },
+    {
+      "name": "Attach to BulkyWeb",
+      "type": "coreclr",
+      "request": "attach"
+    }
+  ]
+}

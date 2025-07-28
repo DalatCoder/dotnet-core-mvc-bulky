@@ -1,0 +1,359 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "build",
+      "type": "shell",
+      "command": "dotnet",
+      "args": ["build", "BulkyWeb/BulkyWeb.csproj"],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "problemMatcher": ["$msCompile"],
+      "presentation": {
+        "echo": true,
+        "reveal": "silent",
+        "focus": false,
+        "panel": "shared",
+        "showReuseMessage": true,
+        "clear": false
+      }
+    },
+    {
+      "label": "run",
+      "type": "shell",
+      "command": "dotnet",
+      "args": ["run", "--project", "BulkyWeb/BulkyWeb.csproj"],
+      "group": "build",
+      "isBackground": true,
+      "problemMatcher": [
+        {
+          "pattern": [
+            {
+              "regexp": "\\bNow listening on:\\s+(https?://\\S+)",
+              "message": 1
+            }
+          ],
+          "background": {
+            "activeOnStart": true,
+            "beginsPattern": "^\\s*Hosting environment:",
+            "endsPattern": "^\\s*Content root path:"
+          }
+        }
+      ],
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": true,
+        "panel": "new",
+        "showReuseMessage": false,
+        "clear": true
+      },
+      "options": {
+        "env": {
+          "ASPNETCORE_ENVIRONMENT": "Development"
+        }
+      }
+    },
+    {
+      "label": "watch",
+      "type": "shell",
+      "command": "dotnet",
+      "args": ["watch", "run", "--project", "BulkyWeb/BulkyWeb.csproj"],
+      "group": "build",
+      "isBackground": true,
+      "problemMatcher": [
+        {
+          "pattern": [
+            {
+              "regexp": "\\bNow listening on:\\s+(https?://\\S+)",
+              "message": 1
+            }
+          ],
+          "background": {
+            "activeOnStart": true,
+            "beginsPattern": "^dotnet watch",
+            "endsPattern": "^\\s*Content root path:|^\\s*Now listening on:"
+          }
+        }
+      ],
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": true,
+        "panel": "new",
+        "showReuseMessage": false,
+        "clear": true
+      },
+      "options": {
+        "env": {
+          "ASPNETCORE_ENVIRONMENT": "Development"
+        }
+      }
+    },
+    {
+      "label": "clean",
+      "type": "shell",
+      "command": "dotnet",
+      "args": ["clean", "BulkyWeb/BulkyWeb.csproj"],
+      "group": "build",
+      "problemMatcher": ["$msCompile"],
+      "presentation": {
+        "echo": true,
+        "reveal": "silent",
+        "focus": false,
+        "panel": "shared",
+        "showReuseMessage": true,
+        "clear": false
+      }
+    },
+    {
+      "label": "restore",
+      "type": "shell",
+      "command": "dotnet",
+      "args": ["restore", "BulkyWeb/BulkyWeb.csproj"],
+      "group": "build",
+      "problemMatcher": ["$msCompile"],
+      "presentation": {
+        "echo": true,
+        "reveal": "silent",
+        "focus": false,
+        "panel": "shared",
+        "showReuseMessage": true,
+        "clear": false
+      }
+    },
+    {
+      "label": "build-all",
+      "type": "shell",
+      "command": "dotnet",
+      "args": ["build"],
+      "group": "build",
+      "problemMatcher": ["$msCompile"],
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "shared",
+        "showReuseMessage": true,
+        "clear": false
+      }
+    },
+    {
+      "label": "ef-add-migration",
+      "type": "shell",
+      "command": "dotnet",
+      "args": [
+        "ef",
+        "migrations",
+        "add",
+        "${input:migrationName}",
+        "--project",
+        "Bulky.DataAccess",
+        "--startup-project",
+        "BulkyWeb"
+      ],
+      "group": "build",
+      "problemMatcher": ["$msCompile"],
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": true,
+        "panel": "new",
+        "showReuseMessage": false,
+        "clear": true
+      },
+      "options": {
+        "cwd": "${workspaceFolder}"
+      }
+    },
+    {
+      "label": "ef-update-database",
+      "type": "shell",
+      "command": "dotnet",
+      "args": [
+        "ef",
+        "database",
+        "update",
+        "--project",
+        "Bulky.DataAccess",
+        "--startup-project",
+        "BulkyWeb"
+      ],
+      "group": "build",
+      "problemMatcher": ["$msCompile"],
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": true,
+        "panel": "new",
+        "showReuseMessage": false,
+        "clear": true
+      },
+      "options": {
+        "cwd": "${workspaceFolder}"
+      }
+    },
+    {
+      "label": "ef-drop-database",
+      "type": "shell",
+      "command": "dotnet",
+      "args": [
+        "ef",
+        "database",
+        "drop",
+        "--force",
+        "--project",
+        "Bulky.DataAccess",
+        "--startup-project",
+        "BulkyWeb"
+      ],
+      "group": "build",
+      "problemMatcher": ["$msCompile"],
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": true,
+        "panel": "new",
+        "showReuseMessage": false,
+        "clear": true
+      },
+      "options": {
+        "cwd": "${workspaceFolder}"
+      }
+    },
+    {
+      "label": "ef-remove-migration",
+      "type": "shell",
+      "command": "dotnet",
+      "args": [
+        "ef",
+        "migrations",
+        "remove",
+        "--project",
+        "Bulky.DataAccess",
+        "--startup-project",
+        "BulkyWeb"
+      ],
+      "group": "build",
+      "problemMatcher": ["$msCompile"],
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": true,
+        "panel": "new",
+        "showReuseMessage": false,
+        "clear": true
+      },
+      "options": {
+        "cwd": "${workspaceFolder}"
+      }
+    },
+    {
+      "label": "ef-list-migrations",
+      "type": "shell",
+      "command": "dotnet",
+      "args": [
+        "ef",
+        "migrations",
+        "list",
+        "--project",
+        "Bulky.DataAccess",
+        "--startup-project",
+        "BulkyWeb"
+      ],
+      "group": "build",
+      "problemMatcher": ["$msCompile"],
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": true,
+        "panel": "new",
+        "showReuseMessage": false,
+        "clear": true
+      },
+      "options": {
+        "cwd": "${workspaceFolder}"
+      }
+    },
+    {
+      "label": "ef-script-migration",
+      "type": "shell",
+      "command": "dotnet",
+      "args": [
+        "ef",
+        "migrations",
+        "script",
+        "--project",
+        "Bulky.DataAccess",
+        "--startup-project",
+        "BulkyWeb",
+        "--output",
+        "migration-script.sql"
+      ],
+      "group": "build",
+      "problemMatcher": ["$msCompile"],
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": true,
+        "panel": "new",
+        "showReuseMessage": false,
+        "clear": true
+      },
+      "options": {
+        "cwd": "${workspaceFolder}"
+      }
+    },
+    {
+      "label": "ef-update-to-migration",
+      "type": "shell",
+      "command": "dotnet",
+      "args": [
+        "ef",
+        "database",
+        "update",
+        "${input:targetMigration}",
+        "--project",
+        "Bulky.DataAccess",
+        "--startup-project",
+        "BulkyWeb"
+      ],
+      "group": "build",
+      "problemMatcher": ["$msCompile"],
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": true,
+        "panel": "new",
+        "showReuseMessage": false,
+        "clear": true
+      },
+      "options": {
+        "cwd": "${workspaceFolder}"
+      }
+    },
+    {
+      "label": "migrate-and-run",
+      "dependsOrder": "sequence",
+      "dependsOn": ["ef-update-database", "watch"],
+      "group": "build",
+      "problemMatcher": []
+    }
+  ],
+  "inputs": [
+    {
+      "id": "migrationName",
+      "description": "Enter migration name",
+      "default": "NewMigration",
+      "type": "promptString"
+    },
+    {
+      "id": "targetMigration",
+      "description": "Enter target migration name",
+      "default": "0",
+      "type": "promptString"
+    }
+  ]
+}
