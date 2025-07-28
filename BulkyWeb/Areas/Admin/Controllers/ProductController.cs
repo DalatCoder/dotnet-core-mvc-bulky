@@ -10,10 +10,12 @@ namespace Bulky.Controllers;
 public class ProductController : Controller
 {
     private readonly IUnitOfWork _unitOfWork;
+    private readonly IWebHostEnvironment _webHostEnvironment;
 
-    public ProductController(IUnitOfWork unitOfWork)
+    public ProductController(IUnitOfWork unitOfWork, IWebHostEnvironment webHostEnvironment)
     {
         _unitOfWork = unitOfWork;
+        _webHostEnvironment = webHostEnvironment;
     }
 
     public IActionResult Index()
@@ -64,6 +66,21 @@ public class ProductController : Controller
         if (productViewModel.Product.ImageUrl == null)
         {
             productViewModel.Product.ImageUrl = "";
+        }
+
+        if (file != null)
+        {
+            string wwwRootPath = _webHostEnvironment.WebRootPath;
+            string fileName = Guid.NewGuid().ToString();
+            string upload = Path.Combine(wwwRootPath,  "images", "products");
+            string extension = Path.GetExtension(file.FileName);
+            
+            using (var fileStream = new FileStream(Path.Combine(upload, fileName + extension), FileMode.Create))
+            {
+                file.CopyTo(fileStream);
+            }
+            
+            productViewModel.Product.ImageUrl = @"\images\products\" + fileName + extension;
         }
 
         if (productViewModel.Product.Id == 0)
