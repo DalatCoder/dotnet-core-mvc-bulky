@@ -22,25 +22,33 @@ public class ProductController : Controller
         return View(products);
     }
 
-    public IActionResult Create()
+    public IActionResult Upsert(int? id)
     {
         IEnumerable<SelectListItem> categoryList = _unitOfWork.Category.GetAll().Select(c => new SelectListItem
         {
             Text = c.Name,
             Value = c.Id.ToString()
         });
-
-        ViewBag.CategoryList = categoryList;
         
         ProductViewModel productViewModel = new ProductViewModel();
         productViewModel.Product = new Product();
         productViewModel.CategoryList = categoryList;
+        
+        if (id != null && id > 0)
+        {
+            productViewModel.Product = _unitOfWork.Product.Get(u => u.Id == id);
+            
+            if (productViewModel.Product == null)
+            {
+                return NotFound();
+            }
+        }
 
         return View(productViewModel);
     }
 
     [HttpPost]
-    public IActionResult Create(ProductViewModel productViewModel)
+    public IActionResult Upsert(ProductViewModel productViewModel, IFormFile? file)
     {
         if (!ModelState.IsValid)
         {
@@ -53,38 +61,17 @@ public class ProductController : Controller
             return View(productViewModel);
         }
 
-        _unitOfWork.Product.Add(productViewModel.Product);
-        _unitOfWork.Save();
-
-        TempData["success"] = "Product created successfully";
-
-        return RedirectToAction("Index");
-    }
-
-    public IActionResult Edit(int? id)
-    {
-        if (id == null || id == 0)
+        if (productViewModel.Product.Id == 0)
         {
-            return NotFound();
+            _unitOfWork.Product.Add(productViewModel.Product);
         }
-
-        Product? product = _unitOfWork.Product.Get(u => u.Id == id);
-
-        return View(product);
-    }
-
-    [HttpPost]
-    public IActionResult Edit(Product product)
-    {
-        if (!ModelState.IsValid)
+        else
         {
-            return View(product);
+            _unitOfWork.Product.Update(productViewModel.Product);
         }
-
-        _unitOfWork.Product.Update(product);
+        
         _unitOfWork.Save();
-
-        TempData["success"] = "Product updated successfully";
+        TempData["success"] = "Product created/updated successfully";
 
         return RedirectToAction("Index");
     }
