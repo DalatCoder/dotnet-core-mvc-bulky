@@ -27,21 +27,7 @@
       "args": ["run", "--project", "BulkyWeb/BulkyWeb.csproj"],
       "group": "build",
       "isBackground": true,
-      "problemMatcher": [
-        {
-          "pattern": [
-            {
-              "regexp": "\\bNow listening on:\\s+(https?://\\S+)",
-              "message": 1
-            }
-          ],
-          "background": {
-            "activeOnStart": true,
-            "beginsPattern": "^\\s*Hosting environment:",
-            "endsPattern": "^\\s*Content root path:"
-          }
-        }
-      ],
+      "problemMatcher": [],
       "presentation": {
         "echo": true,
         "reveal": "always",
@@ -63,21 +49,7 @@
       "args": ["watch", "run", "--project", "BulkyWeb/BulkyWeb.csproj"],
       "group": "build",
       "isBackground": true,
-      "problemMatcher": [
-        {
-          "pattern": [
-            {
-              "regexp": "\\bNow listening on:\\s+(https?://\\S+)",
-              "message": 1
-            }
-          ],
-          "background": {
-            "activeOnStart": true,
-            "beginsPattern": "^dotnet watch",
-            "endsPattern": "^\\s*Content root path:|^\\s*Now listening on:"
-          }
-        }
-      ],
+      "problemMatcher": [],
       "presentation": {
         "echo": true,
         "reveal": "always",
