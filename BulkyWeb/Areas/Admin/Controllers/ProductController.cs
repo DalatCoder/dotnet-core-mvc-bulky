@@ -18,17 +18,19 @@ public class ProductController : Controller
     public IActionResult Index()
     {
         List<Product> products = _unitOfWork.Product.GetAll().ToList();
+        return View(products);
+    }
+
+    public IActionResult Create()
+    {
         IEnumerable<SelectListItem> categoryList = _unitOfWork.Category.GetAll().Select(c => new SelectListItem
         {
             Text = c.Name,
             Value = c.Id.ToString()
         });
 
-        return View(products);
-    }
+        ViewBag.CategoryList = categoryList;
 
-    public IActionResult Create()
-    {
         return View();
     }
 
