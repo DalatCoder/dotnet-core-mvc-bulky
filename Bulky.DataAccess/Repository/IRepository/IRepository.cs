@@ -8,10 +8,10 @@ public interface IRepository<T> where T : class
     // để thực hiện các thao tác CRUD hoặc tương tác với DB context
     
     // Lấy tất cả bản ghi
-    IEnumerable<T> GetAll();
+    IEnumerable<T> GetAll(string? includeProperties = null);
     
     // Lấy một bản ghi dựa trên điều kiện LINQ
-    T Get(Expression<Func<T, bool>> filter);
+    T Get(Expression<Func<T, bool>> filter, string? includeProperties = null);
     
     // Thêm một entity
     void Add(T entity);
