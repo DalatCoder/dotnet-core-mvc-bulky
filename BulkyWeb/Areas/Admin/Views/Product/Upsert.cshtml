@@ -16,6 +16,7 @@
         <div class="col-md-8 offset-md-2">
             <form method="post" enctype="multipart/form-data">
                 <input asp-for="@Model.Product.Id" type="hidden"/>
+                <input asp-for="@Model.Product.ImageUrl" type="hidden" />
 
                 <div class="row mb-3">
                     <div class="col-md-6">
@@ -77,6 +78,10 @@
                 <div class="mb-3">
                     <label asp-for="@Model.Product.ImageUrl" class="form-label"></label>
                     <input name="file" type="file" class="form-control"/>
+                </div>
+                
+                <div class="mb-3">
+                    <img src="/@Model.Product.ImageUrl" style="width: 100%" />
                 </div>
 
                 <div class="mb-3">

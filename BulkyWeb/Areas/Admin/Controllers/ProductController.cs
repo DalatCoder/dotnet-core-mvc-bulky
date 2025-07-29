@@ -70,6 +70,15 @@ public class ProductController : Controller
 
         if (file != null)
         {
+            if (!string.IsNullOrEmpty(productViewModel.Product.ImageUrl))
+            {
+                string oldImagePath = Path.Combine(_webHostEnvironment.WebRootPath, productViewModel.Product.ImageUrl.TrimStart('\\'));
+                if (System.IO.File.Exists(oldImagePath))
+                {
+                    System.IO.File.Delete(oldImagePath);
+                }
+            }
+            
             string wwwRootPath = _webHostEnvironment.WebRootPath;
             string fileName = Guid.NewGuid().ToString();
             string upload = Path.Combine(wwwRootPath,  "images", "products");
@@ -80,7 +89,7 @@ public class ProductController : Controller
                 file.CopyTo(fileStream);
             }
             
-            productViewModel.Product.ImageUrl = @"\images\products\" + fileName + extension;
+            productViewModel.Product.ImageUrl = Path.Combine("images", "products", fileName + extension);
         }
 
         if (productViewModel.Product.Id == 0)
